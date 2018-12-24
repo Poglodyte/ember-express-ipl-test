@@ -3,11 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// set up database connection
+var mongoDB = 'mongodb+srv://dbPddaum:acziZIj3E3IHFvo2@myfirstcluster-8pgoo.gcp.mongodb.net/ipl-test?retryWrites=true';
+// TODO: Set connection options, namely the one to useNewUrlParser
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
