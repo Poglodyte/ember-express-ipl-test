@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= 'Manhole List'
+
+  ul
+    each manhole in manhole_list
+      li #{manhole.name} #{manhole.location}
+
+    else
+      li There are no manholes in the database.

@@ -2,7 +2,12 @@ var Manhole = require('../models/manhole');
 
 // Get all Manholes
 exports.manhole_list = function(req, res, next) {
-  res.send('NOT IMPLEMENTED: Manhole list');
+  
+  Manhole.find().exec(function (err, manholes) {
+    if (err) { return next(err); }
+    res.render('manhole_list', { manhole_list: manholes });
+  });
+
 };
 
 // Get specific Manhole by id
