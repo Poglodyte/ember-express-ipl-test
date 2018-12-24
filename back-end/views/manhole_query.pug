@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= 'Manholes Within Radius'
+
+  ul
+    each manhole in manhole_results
+      li
+        #{manhole.name}
+
+    else
+      li There are no manholes within that radius.

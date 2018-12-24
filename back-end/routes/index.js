@@ -11,5 +11,6 @@ router.get('/', function(req, res, next) {
 router.get('/manholes', manhole_controller.manhole_list);
 router.get('/manhole/:id', manhole_controller.manhole_detail);
 router.post('/manhole/create', manhole_controller.manhole_create);
+router.get('/manholes/query', manhole_controller.manhole_query_within);
 
 module.exports = router;
