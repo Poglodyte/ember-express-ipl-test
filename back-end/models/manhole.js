@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var ManholeSchema = new Schema(
   {
     name: {type: String, required: true, max: 100},
+    // Can make separate PointSchema and drop in
     location: {
       type: {
         type: String,
