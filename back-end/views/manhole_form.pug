@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Add manhole
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text', placeholder='MyFavoriteManhole' name='name' required='true')
+    div.form-group
+      label(for='Longitude') Longitude:
+      input#name.form-control(type='text', placeholder='-180:180' coordinates[0]='Longitude' required='true')
+      label(for='Latitude') Latitude:
+      input#name.form-control(type='text', placeholder='-90:90' coordinates[1]='Latitude' required='true')
+    button.btn.btn-primary(type='submit') Submit

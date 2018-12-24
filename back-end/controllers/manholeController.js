@@ -28,7 +28,7 @@ exports.manhole_detail = function(req, res, next) {
 
 // Add new Manhole - get form
 exports.manhole_create_get = function(req, res, next) {
-  res.send('NOT_IMPLEMENTED: Manhole create get');
+  res.render('manhole_form');
 };
 
 // Add new Manhole - save to db
