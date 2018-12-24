@@ -20,4 +20,10 @@ var ManholeSchema = new Schema(
   }
 );
 
+ManholeSchema
+.virtual('url')
+.get(function () {
+  return '/manhole/' + this._id;
+});
+
 module.exports = mongoose.model('Manhole', ManholeSchema);

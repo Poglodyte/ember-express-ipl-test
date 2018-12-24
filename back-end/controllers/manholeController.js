@@ -12,7 +12,18 @@ exports.manhole_list = function(req, res, next) {
 
 // Get specific Manhole by id
 exports.manhole_detail = function(req, res, next) {
-  res.send('NOT IMPLEMENTED: Manhole detail: ' + req.params.id);
+  
+  Manhole.findById(req.params.id)
+  .exec(function (err, manhole) {
+    if (err) { return next(err); }
+    if (manhole==null) {
+      var err = new Error('Manhole not found');
+      err.status = 404;
+      return next(err);
+    }
+    res.render('manhole_detail', { manhole: manhole });
+  });
+
 };
 
 // Add new Manhole - get form

@@ -5,7 +5,9 @@ block content
 
   ul
     each manhole in manhole_list
-      li #{manhole.name} #{manhole.location}
+      li 
+        a(href=manhole.url) #{manhole.name} 
+        | (#{manhole.location})
 
     else
       li There are no manholes in the database.
