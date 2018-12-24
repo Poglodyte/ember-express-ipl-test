@@ -4,9 +4,8 @@ block content
   h1= 'Manholes Within Radius'
 
   ul
-    each manhole in manhole_results
-      li
-        #{manhole.name}
+    each manhole in manhole_list
+      li #{manhole.name} #{manhole.location}
 
     else
       li There are no manholes within that radius.

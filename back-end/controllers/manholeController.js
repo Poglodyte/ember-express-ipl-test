@@ -17,5 +17,20 @@ exports.manhole_create = function(req, res, next) {
 
 // Testing Geospatial Query
 exports.manhole_query_within = function(req, res, next) {
-  res.send('NOT IMPLEMENTED: Manhole query within');
+
+  Manhole.find({
+    location: {
+      $nearSphere: {
+        $geometry: {
+          type: "Point",
+          coordinates: [ -70, 40 ]
+        },
+        $maxDistance: 5000
+      }
+    }
+  }).exec(function (err, manhole_results) {
+    if (err) { return next(err); }
+    res.render('manhole_query', { manhole_list: manhole_results });
+  });
+
 };
