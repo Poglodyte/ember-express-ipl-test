@@ -9,3 +9,8 @@ exports.manhole_list = function(req, res, next) {
 exports.manhole_detail = function(req, res, next) {
   res.send('NOT IMPLEMENTED: Manhole detail: ' + req.params.id);
 };
+
+// Add new Manhole
+exports.manhole_create = function(req, res, next) {
+  res.send('NOT_IMPLEMENTED: Manhole create');
+};
