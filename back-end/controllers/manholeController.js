@@ -5,7 +5,9 @@ exports.manhole_list = function(req, res, next) {
   
   Manhole.find().exec(function (err, manholes) {
     if (err) { return next(err); }
-    res.render('manhole_list', { manhole_list: manholes });
+  //  res.render('manhole_list', { manhole_list: manholes });
+    // Now sending to Ember client instead
+    res.send({manhole: manholes});
   });
 
 };
