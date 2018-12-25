@@ -7,7 +7,7 @@ block content
     each manhole in manhole_list
       li 
         a(href=manhole.url) #{manhole.name} 
-        | (#{manhole.location})
+        | (Latitude: #{manhole.latitude}, Longitude: #{manhole.longitude})
 
     else
       li There are no manholes within that radius.

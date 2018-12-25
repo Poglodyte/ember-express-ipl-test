@@ -26,4 +26,16 @@ ManholeSchema
   return '/manhole/' + this._id;
 });
 
+ManholeSchema
+.virtual('longitude')
+.get(function () {
+  return this.location.coordinates[0];
+});
+
+ManholeSchema
+.virtual('latitude')
+.get(function () {
+  return this.location.coordinates[1];
+});
+
 module.exports = mongoose.model('Manhole', ManholeSchema);
