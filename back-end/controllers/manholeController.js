@@ -33,7 +33,19 @@ exports.manhole_create_get = function(req, res, next) {
 
 // Add new Manhole - save to db
 exports.manhole_create_post = function(req, res, next) {
-  res.send('NOT_IMPLEMENTED: Manhole create post');
+  
+  // TODO: Add validation and santization using express-validator
+
+  var manhole = new Manhole({
+    name: req.body.name,
+    location: { type: "Point", coordinates: [ req.body.lng, req.body.lat ] }
+  });
+
+  manhole.save(function (err) {
+    if (err) { return next(err); }
+    res.redirect(manhole.url);
+  });
+
 };
 
 // Get manhole query form
