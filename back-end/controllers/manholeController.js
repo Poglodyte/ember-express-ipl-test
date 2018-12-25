@@ -50,7 +50,7 @@ exports.manhole_create_post = function(req, res, next) {
 
 // Get manhole query form
 exports.query_form_get = function(req, res, next) {
-  res.send('NOT_IMPLEMENTED: Query form get');
+  res.render('query_form');
 };
 
 // Testing Geospatial Query
@@ -61,9 +61,10 @@ exports.manhole_query_within = function(req, res, next) {
       $nearSphere: {
         $geometry: {
           type: "Point",
-          coordinates: [ -70, 40 ]
+          coordinates: [ req.query.lng , req.query.lat ]
         },
-        $maxDistance: 5000
+        $minDistance: req.query.minDistance,
+        $maxDistance: req.query.maxDistance
       }
     }
   }).exec(function (err, manhole_results) {

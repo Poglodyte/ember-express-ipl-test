@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Query for manholes in range of designated coordinates
+
+  form(method='GET' action='/manholes/query')
+    div.form-group
+      label(for='lng') Longitude:
+      input#lng.form-control(type='number', placeholder='-180:180' name='lng' required='true')
+      label(for='lat') Latitude:
+      input#lat.form-control(type='number', placeholder='-90:90' name='lat' required='true')
+    div.form-group
+      label(for='minDistance') Minimum Distance:
+      input#minDistance.form-control(type='number', placeholder='<distance in meters>' name='minDistance')
+      label(for='maxDistance') Maximum Distance:
+      input#maxDistance.form-control(type='number', placeholder='<distance in meters>' name='maxDistance')
+    button.btn.btn-primary(type='submit') Submit
