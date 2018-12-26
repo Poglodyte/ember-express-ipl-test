@@ -7,7 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('manholes');
+  this.route('manholes', function() {});
 });
 
 export default Router;
