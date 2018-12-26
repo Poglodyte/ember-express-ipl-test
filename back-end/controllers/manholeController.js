@@ -23,7 +23,9 @@ exports.manhole_detail = function(req, res, next) {
       err.status = 404;
       return next(err);
     }
-    res.render('manhole_detail', { manhole: manhole });
+  //  res.render('manhole_detail', { manhole: manhole });
+    // Now sending to Ember client instead
+    res.send({manhole: manhole});
   });
 
 };

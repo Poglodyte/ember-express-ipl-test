@@ -1,7 +1,7 @@
 <h2>Manhole List</h2>
 
 {{#each model as |manhole|}}
-  <h3>{{manhole.name}}</h3>
+  <h3>{{#link-to "manholes.detail" manhole}}{{manhole.name}}{{/link-to}}</h3>
   <span>Latitude:</span> {{manhole.latitude}}
   <span>Longitude:</span> {{manhole.longitude}}
 {{/each}}
