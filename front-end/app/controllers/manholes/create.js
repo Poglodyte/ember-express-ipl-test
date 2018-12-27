@@ -8,17 +8,17 @@ export default Controller.extend({
         location: { type: "Point", coordinates: [ this.lng, this.lat ] }
       });
 
-     // console.log(manhole);
-      manhole.save().then(transitionToDetail).catch(failure);
-
       let self = this;
-      function transitionToDetail(manhole) {
-        self.transitionToRoute('manholes.detail', manhole);
-      }
 
-      function failure(reason) {
-        // handle the error
-      }
+      manhole.save()
+        .then((response) => {
+          // "response" might be clearer, even though "manhole" works 
+          // (not sure if it's from the response, or this manhole has been updated by the response)
+          self.transitionToRoute('manholes.detail', response);
+        })
+        .catch((err) => {
+          // TODO: handle error
+        });
     }
   }
 });
