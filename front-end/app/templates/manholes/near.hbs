@@ -1,0 +1,20 @@
+<span>Latitude:</span> {{input type="number" value=lat}}
+<span>Longitude:</span> {{input type="number" value=lng}}
+<span>Min Distance:</span> {{input type="number" value=minDistance}}
+<span>Max Distance:</span> {{input type="number" value=maxDistance}}
+
+<button {{action "submitQuery"}}>Query</button>
+
+<h2>Results</h2>
+
+{{results}}
+
+  {{#each model as |manhole|}}
+    <h3>
+      {{#link-to "manholes.detail" manhole}}  {{!-- model name as 2nd arg seralizes to model_id by default --}}
+        {{manhole.name}}
+      {{/link-to}}
+    </h3>
+    <span>Latitude:</span> {{manhole.latitude}}
+    <span>Longitude:</span> {{manhole.longitude}}
+  {{/each}} 

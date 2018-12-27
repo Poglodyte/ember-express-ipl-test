@@ -2,13 +2,44 @@ var Manhole = require('../models/manhole');
 
 // Get all Manholes
 exports.manhole_list = function(req, res, next) {
-  
-  Manhole.find().exec(function (err, manholes) {
-    if (err) { return next(err); }
-  //  res.render('manhole_list', { manhole_list: manholes });
-    // Now sending to Ember client instead
-    res.send({manhole: manholes});
-  });
+
+  // Trying to handle all requests for multiple manholes here
+
+  // Maybe there is another way to trigger a GET on backend
+  // /manholes/query, but this was the best way I could find to
+  // still go through Ember's store
+
+  // Oh, yes I think you can just use jQuery.getJSON('/manholes/query...)
+
+  if(req.query.nearLng) {
+
+    Manhole.find({
+      location: {
+        $nearSphere: {
+          $geometry: {
+            type: "Point",
+            coordinates: [ req.query.nearLng , req.query.nearLat ]
+          },
+          $minDistance: req.query.minDistance,
+          $maxDistance: req.query.maxDistance
+        }
+      }
+    }).exec(function (err, manhole_results) {
+      if (err) { return next(err); }
+      res.send({ manhole: manhole_results });
+    });
+
+  }
+  else {
+
+    Manhole.find().exec(function (err, manholes) {
+      if (err) { return next(err); }
+    //  res.render('manhole_list', { manhole_list: manholes });
+      // Now sending to Ember client instead
+      res.send({manhole: manholes});
+    });
+    
+  }
 
 };
 
