@@ -12,7 +12,7 @@ router.get('/manholes', manhole_controller.manhole_list);
 router.get('/manholes/:id', manhole_controller.manhole_detail);
 
 router.get('/manhole/create', manhole_controller.manhole_create_get);
-router.post('/manhole/create', manhole_controller.manhole_create_post);
+router.post('/manholes', manhole_controller.manhole_create_post);
 
 router.get('/manholes/query_form', manhole_controller.query_form_get);
 router.get('/manholes/query', manhole_controller.manhole_query_within);

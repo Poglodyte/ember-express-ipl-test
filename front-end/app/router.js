@@ -9,6 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('manholes', function() {
     this.route('detail', { path: '/:manhole_id' });
+    this.route('create');
   });
 });
 

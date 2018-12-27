@@ -40,14 +40,20 @@ exports.manhole_create_post = function(req, res, next) {
   
   // TODO: Add validation and santization using express-validator
 
+  // Does Ember createRecord generate an id for us?
+  // console.log(req.body.manhole._id);   // both id and _id are undefined so I guess not...
+
+  // Still need to create a new object with mongoose to generate the id
   var manhole = new Manhole({
-    name: req.body.name,
-    location: { type: "Point", coordinates: [ req.body.lng, req.body.lat ] }
+    name: req.body.manhole.name,
+    location: req.body.manhole.location
   });
 
   manhole.save(function (err) {
     if (err) { return next(err); }
-    res.redirect(manhole.url);
+  //  res.redirect(manhole.url);
+  //  Should send a response? Send id back? Entire record object?
+    res.send({manhole: manhole}); // that seems to work nicely
   });
 
 };
