@@ -5,9 +5,12 @@ export default Controller.extend({
   lat: 39.768,
   zoom: 17,
 
-  selection: {
-    lat: 39.768,
-    lng: -86.158
+  init() {
+    this._super(...arguments);
+    this.selection = {
+      lng: -86.158,
+      lat: 39.768
+    }
   },
 
   actions: {
@@ -30,8 +33,8 @@ export default Controller.extend({
     // });
       this.set('selection.lat', location.lat);
       this.set('selection.lng', location.lng);
-      console.log("updating: ", location)
-      console.log("selection: ", this.selection)
+    //  console.log("updating: ", location)
+    //  console.log("selection: ", this.selection)
     }
   }
 });
