@@ -1,5 +1,14 @@
-<span>Latitude:</span> {{input type="number" value=lat}}
-<span>Longitude:</span> {{input type="number" value=lng}}
+{{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
+
+  {{layers.tile url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}}
+  
+  {{#marker-layer lat=selection.lat lng=selection.lng draggable=true onDragend=(action "updateLocation")}}
+  {{/marker-layer}}
+  
+{{/leaflet-map}}
+
+<span>Latitude:</span> {{input type="number" value=selection.lat}}
+<span>Longitude:</span> {{input type="number" value=selection.lng}}
 <span>Min Distance:</span> {{input type="number" value=minDistance}}
 <span>Max Distance:</span> {{input type="number" value=maxDistance}}
 
