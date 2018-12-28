@@ -16,7 +16,17 @@ export default Controller.extend({
     this.circle_location = {
       lng: -86.158,
       lat: 39.768
-    }
+    },
+    this.setGeoLocation();
+  },
+
+  setGeoLocation() {
+    let self = this;
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      self.set('selection.lat', position.coords.latitude);
+      self.set('selection.lng', position.coords.longitude);
+      console.log('curr pos: ', position)
+    });
   },
 
   actions: {
@@ -37,7 +47,7 @@ export default Controller.extend({
         location: { type: "Point", coordinates: [ this.selection.lng, this.selection.lat ] }
       });
 
-      let self = this;
+  //    let self = this;
 
       manhole.save()
         .then((response) => {
