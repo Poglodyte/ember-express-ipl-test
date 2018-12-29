@@ -3,26 +3,40 @@
   tilt=0
   mapTypeId='satellite' 
   styles=primaryMapStyle as |g|}}
-  {{g.marker lat=marker.lat lng=marker.lng draggable=true onDragend=(action "onDragend")}}
+  
+  {{g.circle lat=circle.lat lng=circle.lng 
+    radius=circle.outer
+    fillColor="green"
+    fillOpacity=0.3
+    strokeColor="darkgreen"
+    strokeOpacity=0.5
+    strokeWeight=1
+    draggable=true
+    onDragend=(action "onDragend")}}
+
+  {{#each model as |manhole|}}
+    {{g.marker lat=manhole.latitude lng=manhole.longitude}}
+  {{/each}}
+
 {{/g-map}}
   
-<span>Latitude:</span> {{input type="number" value=marker.lat}}
-<span>Longitude:</span> {{input type="number" value=marker.lng}}
+<span>Latitude:</span> {{input type="number" value=circle.lat}}
+<span>Longitude:</span> {{input type="number" value=circle.lng}}
+{{!!-- TODO: Prevent user from selecting negative min/max Distances --}}
 <span>Min Distance:</span> {{input type="number" value=minDistance}}
-<span>Max Distance:</span> {{input type="number" value=maxDistance}}
+<span>Max Distance:</span> {{input type="number" value=maxDistance change=(action "updateRadius")}}
 
 <button {{action "submitQuery"}}>Query</button>
 
 <h2>Results</h2>
 
-{{results}}
-
-  {{#each model as |manhole|}}
-    <h3>
-      {{#link-to "manholes.detail" manhole}}  {{!-- model name as 2nd arg seralizes to model_id by default --}}
-        {{manhole.name}}
-      {{/link-to}}
-    </h3>
-    <span>Latitude:</span> {{manhole.latitude}}
-    <span>Longitude:</span> {{manhole.longitude}}
-  {{/each}} 
+{{#each model as |manhole|}}
+  <h3>
+    {{!-- model name as 2nd arg seralizes to model_id by default --}}
+    {{#link-to "manholes.detail" manhole}}
+      {{manhole.name}}
+    {{/link-to}}
+  </h3>
+  <span>Latitude:</span> {{manhole.latitude}}
+  <span>Longitude:</span> {{manhole.longitude}}
+{{/each}} 
