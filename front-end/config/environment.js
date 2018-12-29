@@ -19,6 +19,12 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'connect-src' : "'self' http://localhost:3000"
     },
+    'ember-google-maps': {
+      // Need to specify key when serving, not sure how to set otherwise
+      key: process.env.GOOGLE_MAPS_API_KEY, // Using .env files
+      language: 'en',
+      version: '3.35'
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
