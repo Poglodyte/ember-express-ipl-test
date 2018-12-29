@@ -1,10 +1,13 @@
-{{g-map lat=lat lng=lng 
+{{#g-map lat=lat lng=lng
   zoom=zoom 
-  tilt=0 
-  styles=primaryMapStyle}}
+  tilt=0
+  mapTypeId='satellite' 
+  styles=primaryMapStyle as |g|}}
+  {{g.marker lat=marker.lat lng=marker.lng draggable=true onDragend=(action "onDragend")}}
+{{/g-map}}
   
-<span>Latitude:</span> {{input type="number" value=lat}}
-<span>Longitude:</span> {{input type="number" value=lng}}
+<span>Latitude:</span> {{input type="number" value=marker.lat}}
+<span>Longitude:</span> {{input type="number" value=marker.lng}}
 <span>Min Distance:</span> {{input type="number" value=minDistance}}
 <span>Max Distance:</span> {{input type="number" value=maxDistance}}
 
