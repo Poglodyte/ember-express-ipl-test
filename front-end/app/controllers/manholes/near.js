@@ -46,6 +46,10 @@ Ember.get(object, 'key') === 'value';
 
     updateRadius() {
       this.set('circle.outer', Number(this.maxDistance));
+    },
+
+    manholeLink(manhole) {
+      this.transitionToRoute("manholes.detail", manhole)
     }
   }
 });

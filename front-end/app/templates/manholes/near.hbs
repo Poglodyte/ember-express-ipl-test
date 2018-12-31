@@ -19,24 +19,28 @@
   {{/each}}
 
 {{/g-map}}
-  
-<span>Latitude:</span> {{input type="number" value=circle.lat}}
-<span>Longitude:</span> {{input type="number" value=circle.lng}}
-{{!!-- TODO: Prevent user from selecting negative min/max Distances --}}
-<span>Min Distance:</span> {{input type="number" value=minDistance}}
-<span>Max Distance:</span> {{input type="number" value=maxDistance change=(action "updateRadius")}}
+
+<div class="layout layout-sm-column">
+  {{paper-input class="flex-30" label="Latitude" type="number" placeholder="-90:90" value=circle.lat onChange=(action (mut circle.lat))}}
+  {{paper-input class="flex-30" label="Longitude" type="number" placeholder="-180:180" value=circle.lng onChange=(action (mut circle.lng))}}
+  {{paper-input class="flex-30" label="Minimum Distance" type="number" value=minDistance onChange=(action (mut minDistance))}}
+  {{paper-input class="flex-40" label="Maximum Distance" type="number" value=maxDistance onChange=(action (mut maxDistance)) change=(action "updateRadius")}}
+</div>
 
 <button {{action "submitQuery"}}>Query</button>
 
 <h2>Results</h2>
 
-{{#each model as |manhole|}}
-  <h3>
-    {{!-- model name as 2nd arg seralizes to model_id by default --}}
-    {{#link-to "manholes.detail" manhole}}
-      {{manhole.name}}
-    {{/link-to}}
-  </h3>
-  <span>Latitude:</span> {{manhole.latitude}}
-  <span>Longitude:</span> {{manhole.longitude}}
-{{/each}} 
+<div class="layout layout-sm-column">
+  {{#each model as |manhole|}}
+    <h3>
+      {{!-- model name as 2nd arg seralizes to model_id by default --}}
+      {{#paper-button raised=true primary=true onClick=(action "manholeLink" manhole)}}
+
+        {{manhole.name}}
+
+      {{/paper-button}}
+    </h3>
+
+  {{/each}}
+</div>
