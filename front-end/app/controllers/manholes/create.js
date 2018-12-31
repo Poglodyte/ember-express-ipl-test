@@ -1,6 +1,10 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
+  lng: -86.158, // should be strings?
+  lat: 39.768,
+  zoom: 10,
+
   actions: {
     submitCreate() {
       let manhole = this.store.createRecord('manhole', {

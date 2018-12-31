@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-  lng: -86.158,
+  lng: -86.158, // should be strings? It just doesn't like 0 unless it's a string?
   lat: 39.768,
   zoom: 17, // 20 seems to be max for Satellite (Indianapolis) and 22 is max for Map
 
