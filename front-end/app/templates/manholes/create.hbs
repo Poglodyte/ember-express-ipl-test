@@ -1,4 +1,9 @@
-{{g-map lat=lat lng=lng zoom=zoom}}
+{{#g-map lat=lat lng=lng zoom=zoom tilt=0
+  mapTypeId='satellite' 
+  onZoomChanged=(action "onZoomChanged")
+  as |g|}}
+  {{g.marker lat=lat lng=lng draggable=true onDragend=(action "onDragend")}}
+{{/g-map}}
 
 <span>Name:</span> {{input type="text" value=name size="100" required="true"}}
 <span>Latitude:</span> {{input type="number" value=lat}}

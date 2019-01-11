@@ -3,7 +3,12 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   lng: -86.158, // should be strings?
   lat: 39.768,
-  zoom: 10,
+//  zoom: 10,
+
+  init() {
+    this._super(...arguments);
+    this.zoom = 10;
+  },
 
   actions: {
     submitCreate() {
@@ -23,6 +28,16 @@ export default Controller.extend({
         .catch((err) => {
           // TODO: handle error
         });
-    }
+    },
+
+    onDragend(Event) {
+      // Refresh coordinates
+      this.set('lat', Event.target.position.lat());
+      this.set('lng', Event.target.position.lng());
+    },
+
+    onZoomChanged(Event) {
+      this.set('zoom', Event.target.zoom);
+    },
   }
 });
