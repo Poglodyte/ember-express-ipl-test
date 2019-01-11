@@ -17,7 +17,7 @@ module.exports = function(environment) {
       }
     },
     contentSecurityPolicy: {
-      'connect-src' : "'self' http://localhost:3000"
+      'connect-src' : "'self' https://ipl-manholes.cfapps.io/"  // doesn't seem necessary to function, but maybe to limit access?
     },
     'ember-google-maps': {
       // Need to specify key when serving, not sure how to set otherwise
