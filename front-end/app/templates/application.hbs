@@ -1,3 +1,42 @@
-<h1> Manholes, Joy! </h1>
 
-{{outlet}}
+  {{#paper-sidenav-container class="site-nav-container"}}
+
+    {{#paper-sidenav
+      class="md-whiteframe-z2"
+      name="left"
+      open=leftSideBarOpen
+      onToggle=(action (mut leftSideBarOpen))}}
+      {{#paper-toolbar as |toolbar|}}
+        {{#paper-toolbar-tools}}Left Sidenav{{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
+      {{#paper-content padding=true}}
+        Çup?
+      {{/paper-content}}
+    {{/paper-sidenav}}
+
+    {{#paper-card-content class="flex"}}
+
+      {{! Toolbar without contextual components }}
+      {{! TODO: How to make toolbar fixed when scrolling? Make custom class or is there existing one?}}
+      {{#paper-content flex-layout="column" flex=true}}
+        {{#paper-toolbar}}
+          {{#paper-toolbar-tools}}
+            {{#paper-button iconButton=true}}
+              {{paper-icon "menu"}}
+            {{/paper-button}}
+            <h2>
+              Manholes, Joy!
+            </h2>
+            <span class="flex"></span>
+            {{#paper-button iconButton=true}}
+              {{paper-icon "more_vert"}}
+            {{/paper-button}}
+          {{/paper-toolbar-tools}}
+        {{/paper-toolbar}}
+      {{/paper-content}}
+
+      {{outlet}}
+
+    {{/paper-card-content}}
+
+  {{/paper-sidenav-container}}

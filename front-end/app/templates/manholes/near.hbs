@@ -27,7 +27,9 @@
   {{paper-input class="flex-40" label="Maximum Distance" type="number" value=maxDistance onChange=(action (mut maxDistance)) change=(action "updateRadius")}}
 </div>
 
-<button {{action "submitQuery"}}>Query</button>
+{{#paper-button raised=true primary=true onClick=(action "submitQuery")}}
+  Query
+{{/paper-button}}
 
 <h2>Results</h2>
 
@@ -35,7 +37,7 @@
   {{#each model as |manhole|}}
     <h3>
       {{!-- model name as 2nd arg seralizes to model_id by default --}}
-      {{#paper-button raised=true primary=true onClick=(action "manholeLink" manhole)}}
+      {{#paper-button raised=true accent=true onClick=(action "manholeLink" manhole)}}
 
         {{manhole.name}}
 
